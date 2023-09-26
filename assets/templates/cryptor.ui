@@ -44,11 +44,10 @@
            <cursorShape>PointingHandCursor</cursorShape>
           </property>
           <property name="styleSheet">
-           <string notr="true">#label{
-border: 2px dashed rgb(154, 153, 150);
-color: gray;
-}
-</string>
+           <string notr="true">QLabel {
+	border: 2px dashed rgb(154, 153, 150);
+	color: rgb(154, 153, 150);
+}</string>
           </property>
           <property name="text">
            <string>+</string>
