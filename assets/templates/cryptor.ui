@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>434</width>
-    <height>210</height>
+    <width>360</width>
+    <height>441</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -32,15 +32,25 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_4">
         <item>
-         <widget class="QLabel" name="label">
+         <widget class="QLabel" name="add_label">
           <property name="font">
            <font>
-            <pointsize>36</pointsize>
-            <bold>true</bold>
+            <pointsize>39</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
            </font>
           </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel {
+	border: 2px dashed rgb(154, 153, 150);
+	color: rgb(154, 153, 150);
+}</string>
+          </property>
           <property name="text">
-           <string>Bitband Cryptor</string>
+           <string>+</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -52,22 +62,14 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
-         <widget class="QPushButton" name="select_file_button">
-          <property name="cursor">
-           <cursorShape>PointingHandCursor</cursorShape>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="icon">
-           <iconset theme="address-book-new"/>
-          </property>
-         </widget>
-        </item>
-        <item>
          <widget class="QLineEdit" name="file_path_line_edit">
           <property name="enabled">
            <bool>false</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#file_path_line_edit{
+border: 0.5px solid rgb(154, 153, 150);
+}</string>
           </property>
          </widget>
         </item>
@@ -101,6 +103,15 @@
     </item>
    </layout>
   </widget>
+  <action name="actionadd_icon">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/add_btn.png</normaloff>../icons/add_btn.png</iconset>
+   </property>
+   <property name="text">
+    <string>add_icon</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
