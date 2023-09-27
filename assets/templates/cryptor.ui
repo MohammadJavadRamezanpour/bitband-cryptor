@@ -59,6 +59,9 @@
           <property name="text">
            <string/>
           </property>
+          <property name="icon">
+           <iconset theme="address-book-new"/>
+          </property>
          </widget>
         </item>
         <item>
