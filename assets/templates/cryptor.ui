@@ -36,7 +36,6 @@
           <property name="font">
            <font>
             <pointsize>39</pointsize>
-            <weight>50</weight>
             <bold>false</bold>
            </font>
           </property>
@@ -79,6 +78,9 @@ border: 0.5px solid rgb(154, 153, 150);
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
          <widget class="QPushButton" name="decrypt_button">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
           </property>
@@ -89,6 +91,9 @@ border: 0.5px solid rgb(154, 153, 150);
         </item>
         <item>
          <widget class="QPushButton" name="encrypt_button">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
           </property>
