@@ -3,14 +3,14 @@ import sys
 import base64
 import webbrowser
 
-from cryptography.fernet import Fernet
+from cryptography.fernet import Fernet, InvalidToken
 
 from PyQt6 import QtWidgets, uic, QtCore
 from PyQt6 import QtGui as qtg
 from PyQt6.QtGui import QIcon
 
 from utils.constants import DECRYPT_TEMPLATE, SIGNATURE
-from utils.helpers import get_file_icon, fit_key
+from utils.helpers import show_message_box, fit_key
 
 class DecryptWindow(QtWidgets.QMainWindow):
     def __init__(self, *args, context, **kwargs) -> None:
@@ -33,7 +33,13 @@ class DecryptWindow(QtWidgets.QMainWindow):
             data = f.read().replace(SIGNATURE.encode(), b"")
 
         fernet = Fernet(key)
-        decrypted_data = fernet.decrypt(data)
+
+        try:
+            decrypted_data = fernet.decrypt(data)
+        except InvalidToken:
+            show_message_box("error", "wrong password")
+            return
+
 
         save_at = self.__where_to_save()
 
@@ -52,17 +58,3 @@ class DecryptWindow(QtWidgets.QMainWindow):
         file_name, _ = QtWidgets.QFileDialog.getSaveFileName(self, 
             "Save File", "", "All Files(*)")
         return file_name
-    
-    def __show_message_box(self, title, message):
-        # Create a QMessageBox object.
-        message_box = QtWidgets.QMessageBox(self)
-
-        # Set the text of the message box.
-        message_box.setText(message)
-        message_box.setWindowTitle(title)
-
-        # Set the icon of the message box.
-        message_box.setIcon(QtWidgets.QMessageBox.Icon.Critical)
-
-        # Show the message box.
-        message_box.exec()
