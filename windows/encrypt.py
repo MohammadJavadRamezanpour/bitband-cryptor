@@ -24,29 +24,31 @@ class EncryptWindow(QtWidgets.QMainWindow):
         password = self.encrypt_password_line_edit.text()
         reapeat_password = self.encrypt_repeat_password_line_edit.text()
         
-        if password == reapeat_password:
-            key = fit_key(password.encode())
-
-            with open(self.file_path, 'rb') as f:
-                data = f.read()
-
-            fernet = Fernet(key)
-            encrypted_data = fernet.encrypt(data)
-
-            save_at = self.__where_to_save()
-
-            if save_at:
-                with open(save_at, "wb") as f:
-                    f.write(encrypted_data + SIGNATURE.encode())
-            
-            # open the file
-            directory_path = os.path.dirname(save_at)
-            os.startfile(directory_path) 
-
-            # close the window 
-            self.close()
-        else:
+        if password != reapeat_password:
             self.__show_message_box("password error", "passwords do not match")
+            return
+        
+        key = fit_key(password.encode())
+
+        with open(self.file_path, 'rb') as f:
+            data = f.read()
+
+        fernet = Fernet(key)
+        encrypted_data = fernet.encrypt(data)
+
+        save_at = self.__where_to_save()
+
+        if save_at:
+            with open(save_at, "wb") as f:
+                f.write(encrypted_data + SIGNATURE.encode())
+        
+        # open the file
+        directory_path = os.path.dirname(save_at)
+        os.startfile(directory_path) 
+
+        # close the window 
+        self.close()
+
 
     def __where_to_save(self):
         file_name, _ = QtWidgets.QFileDialog.getSaveFileName(self, 
