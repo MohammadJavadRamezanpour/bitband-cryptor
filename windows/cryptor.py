@@ -6,6 +6,7 @@ from PyQt6.QtGui import QIcon
 from utils.constants import CRYPTOR_TEMPLATE
 from utils.helpers import get_file_icon
 from .encrypt import EncryptWindow
+from .decrypt import DecryptWindow
 
 class CryptorWindow(QtWidgets.QMainWindow):
     def __init__(self, *args, **kwargs) -> None:
@@ -17,6 +18,7 @@ class CryptorWindow(QtWidgets.QMainWindow):
         self.add_label.mousePressEvent = self.__select_file
         self.file_path_line_edit.textChanged.connect(self.file_path_text_changed)
         self.encrypt_button.clicked.connect(self.__encrypt)
+        self.decrypt_button.clicked.connect(self.__decrypt)
 
     def file_path_text_changed(self, text):
         if text:
@@ -48,3 +50,9 @@ class CryptorWindow(QtWidgets.QMainWindow):
             "file_path": self.file_path
         })
         self.encrypt_window.show()
+
+    def __decrypt(self):
+        self.decrypt_window = DecryptWindow(context={
+            "file_path": self.file_path
+        })
+        self.decrypt_window.show()
